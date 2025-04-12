@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
 
@@ -28,11 +29,9 @@ function List({ searchTerm, servings, onStatsUpdate }) {
     recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-
   const filteredByServings = servings
     ? filteredRecipes.filter(recipe => recipe.servings === parseInt(servings))
     : filteredRecipes;
-
 
   const avgHealthScore = filteredByServings.reduce((acc, recipe) => acc + recipe.healthScore, 0) / filteredByServings.length;
   const totalServings = filteredByServings.reduce((acc, recipe) => acc + recipe.servings, 0);
@@ -41,45 +40,49 @@ function List({ searchTerm, servings, onStatsUpdate }) {
     ? (readyTimes[readyTimes.length / 2 - 1] + readyTimes[readyTimes.length / 2]) / 2
     : readyTimes[Math.floor(readyTimes.length / 2)];
 
+  const healthScores = filteredByServings.map((recipe, i) => ({
+    name: `Recipe ${i + 1}`,
+    healthScore: recipe.healthScore,
+    readyInMinutes: recipe.readyInMinutes,
+  }));
+
   useEffect(() => {
     onStatsUpdate({
       avgHealthScore,
       totalServings,
-      medianReadyTime
+      medianReadyTime,
+      healthScores,
     });
   }, [filteredByServings, onStatsUpdate]);
 
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="board">
-      <div className="board-column">
-        <h2 className='board-title'>Recipe</h2>
-        {filteredByServings.map((recipe) => (
-          <p key={recipe.id}>{recipe.title}</p>
-        ))}
-      </div>
-
-      <div className="board-column">
-        <h2 className='board-title'>Ready In</h2>
-        {filteredByServings.map((recipe) => (
-          <p key={recipe.id}>{recipe.readyInMinutes} min</p>
-        ))}
-      </div>
-
-      <div className="board-column">
-        <h2 className='board-title'>Servings</h2>
-        {filteredByServings.map((recipe) => (
-          <p key={recipe.id}>{recipe.servings}</p>
-        ))}
-      </div>
-
-      <div className="board-column">
-        <h2 className='board-title'>Health Score</h2>
-        {filteredByServings.map((recipe) => (
-          <p key={recipe.id}>{recipe.healthScore}</p>
-        ))}
-      </div>
+    <div className="table-container">
+      <table className="recipe-table">
+        <thead>
+          <tr className='table-headings'>
+            <th>Recipe</th>
+            <th>Ready In (min)</th>
+            <th>Servings</th>
+            <th>Health Score</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredByServings.map((recipe) => (
+            <tr key={recipe.id}>
+              <td>{recipe.title}</td>
+              <td>{recipe.readyInMinutes}</td>
+              <td>{recipe.servings}</td>
+              <td>{recipe.healthScore}</td>
+              <td id='detail-link'>
+                <Link to={`/details/${recipe.id}`} target="_blank">🔗</Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

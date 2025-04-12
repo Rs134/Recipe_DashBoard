@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './Header.jsx';
 import List from './List.jsx';
 import SearchBar from './Search.jsx';
+import Detail from './Detail.jsx'
+import Charts from './Charts.jsx';
 import './App.css';
 
 function App() {
@@ -34,7 +36,9 @@ function App() {
           servings={servings}  
           onStatsUpdate={handleStatsUpdate} 
         />
+        <Charts summaryStats={summaryStats} />
       </div>
+
     </div>
   );
 }

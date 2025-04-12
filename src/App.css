@@ -1,4 +1,4 @@
-body,html{
+body, html {
   background-image: linear-gradient(to bottom, rgb(2, 60, 73), rgb(8, 1, 73));
   width: 100vw;
   height: 100vh;
@@ -6,12 +6,13 @@ body,html{
   overflow-x: hidden;
 }
 
-.dashheader{
+.dashheader {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
-.heading{
+
+.heading {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,12 +20,14 @@ body,html{
   flex-direction: column;
   font-size: 20px;
 }
-.header-container{
+
+.header-container {
   margin-top: 10px;
   box-shadow: 1px 2px 5px 2px black;
   padding: 10px;
 }
-.cards{
+
+.cards {
   display: flex;
   justify-content: center;
   gap: 40px;
@@ -33,39 +36,30 @@ body,html{
   font-size: 18px;
 }
 
-.card{
-  padding: 5px 20px ;
+.card {
+  padding: 5px 20px;
   border: 5px solid white;
   border-radius: 20px;
-
 }
 
-.board{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.table-container {
   text-align: center;
-  margin-top: 40px;
-  padding: 15px;
-  align-items: stretch;
+  margin: 40px auto;
 }
 
-
-.board-column{
-  padding: 10px;
-  box-shadow: 5px 5px 5px black;
-  width: 450px;
-  margin: 10px auto;
-  border-left: 3px solid white;
-  border-bottom: 3px solid white;
-  font-size: 18px;
-
+.recipe-table {
+  box-shadow: 1px 2px 5px 2px black;
+  padding: 20px;
 }
 
-.search{
+.table-headings {
+  font-size: 20px;
+}
+
+.search {
   text-align: center;
   margin: 20px 0;
-  box-shadow: 1px 2px 5px 2px black; 
+  box-shadow: 1px 2px 5px 2px black;
   padding: 40px;
   display: flex;
   align-items: center;
@@ -75,11 +69,47 @@ body,html{
   font-size: 20px;
 }
 
-.search input, select{
+.search input, select {
   padding: 10px;
   font-size: 1rem;
   width: 300px;
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+
+.detail-container {
+  box-shadow: 1px 2px 5px 2px black;
+  padding: 30px;
+  font-size: 24px;
+  text-align: center;
+}
+
+
+
+.charts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin-right: 20px;
+}
+
+.chart-container{
+  width: 400px;
+  box-shadow: 1px 2px 5px 2px black;
+  padding: 20px;
+}
+
+.chart-container h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dashlist {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
 }
 
